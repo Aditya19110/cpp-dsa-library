@@ -6,7 +6,6 @@
 #include "Stack.hpp"
 #include "Queue.hpp"
 #include "BST.hpp"
-#include "AVLTree.hpp"
 #include "Graph.hpp"
 #include "HashTable.hpp"
 #include "Algorithms.hpp"
@@ -86,63 +85,31 @@ void socialNetworkExample() {
     network.addEdge("David", "Eve");
     
     std::cout << "Friends of Alice (BFS): ";
-    network.BFS("Alice", [](const std::string& name) {
-        std::cout << name << " ";
-    });
+    network.BFS("Alice");
     std::cout << "\n";
-    
-    // Find shortest path using Dijkstra
-    auto distances = network.dijkstra("Alice");
-    std::cout << "Distance from Alice to Eve: " << distances["Eve"] << " connections\n";
 }
 
-// Example 5: Using AVL Tree for maintaining sorted data
-void sortedDataMaintenance() {
-    std::cout << "\n=== Maintaining Sorted Data with AVL Tree ===\n";
-    DSA::AVLTree<int> scores;
-    
-    // Insert scores (automatically maintains sorted order)
-    std::vector<int> newScores = {85, 92, 78, 95, 88, 76, 99};
-    for (int score : newScores) {
-        scores.insert(score);
-    }
-    
-    std::cout << "Scores in sorted order: ";
-    scores.inOrder([](const int& score) {
-        std::cout << score << " ";
-    });
-    std::cout << "\n";
-    
-    std::cout << "Tree height (balanced): " << scores.height() << "\n";
-}
-
-// Example 6: Comprehensive sorting benchmark
-void sortingBenchmark() {
-    std::cout << "\n=== Sorting Algorithm Comparison ===\n";
+// Example 5: Comprehensive sorting with basic algorithms
+void sortingExamples() {
+    std::cout << "\n=== Sorting Algorithm Examples ===\n";
     
     std::vector<int> data = {15, 3, 9, 8, 5, 2, 7, 1, 6, 4};
     
     auto data1 = data;
     auto data2 = data;
-    auto data3 = data;
     
     std::cout << "Original: ";
     for (int val : data) std::cout << val << " ";
     std::cout << "\n";
     
-    DSA::Algorithms::quickSort(data1);
-    std::cout << "Quick Sort: ";
+    DSA::Algorithms::bubbleSort(data1);
+    std::cout << "Bubble Sort: ";
     for (int val : data1) std::cout << val << " ";
     std::cout << "\n";
     
-    DSA::Algorithms::mergeSort(data2);
-    std::cout << "Merge Sort: ";
+   DSA::Algorithms::selectionSort(data2);
+    std::cout << "Selection Sort: ";
     for (int val : data2) std::cout << val << " ";
-    std::cout << "\n";
-    
-    DSA::Algorithms::heapSort(data3);
-    std::cout << "Heap Sort:  ";
-    for (int val : data3) std::cout << val << " ";
     std::cout << "\n";
 }
 
@@ -178,9 +145,7 @@ int main() {
         printLevels();
         wordFrequencyCounter();
         socialNetworkExample();
-        sortedDataMaintenance();
-        sortingBenchmark();
-        moveSemanticsDemonstration();
+        sortingExamples();
         
         std::cout << "\n✓ All examples completed successfully!\n";
     } catch (const std::exception& e) {

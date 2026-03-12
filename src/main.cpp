@@ -5,7 +5,6 @@
 #include "Stack.hpp"
 #include "Queue.hpp"
 #include "BST.hpp"
-#include "AVLTree.hpp"
 #include "Graph.hpp"
 #include "HashTable.hpp"
 #include "Algorithms.hpp"
@@ -82,23 +81,6 @@ void demonstrateBST() {
     std::cout << "Height: " << bst.height() << "\n";
 }
 
-void demonstrateAVLTree() {
-    std::cout << "\n=== AVL Tree Demo ===\n";
-    DSA::AVLTree<int> avl;
-    
-    // Insert elements that would create imbalance in regular BST
-    for (int i = 1; i <= 7; ++i) {
-        avl.insert(i);
-    }
-    
-    std::cout << "In-order traversal: ";
-    avl.inOrder([](const int& val) { std::cout << val << " "; });
-    std::cout << "\n";
-    
-    std::cout << "Height (balanced): " << avl.height() << "\n";
-    std::cout << "Search 5: " << (avl.search(5) ? "Found" : "Not found") << "\n";
-}
-
 void demonstrateGraph() {
     std::cout << "\n=== Graph Demo ===\n";
     DSA::Graph<int> graph(false); // Undirected graph
@@ -110,14 +92,12 @@ void demonstrateGraph() {
     graph.addEdge(3, 4);
     
     std::cout << "BFS from vertex 0: ";
-    graph.BFS(0, [](const int& val) { std::cout << val << " "; });
+    graph.BFS(0);
     std::cout << "\n";
     
     std::cout << "DFS from vertex 0: ";
-    graph.DFS(0, [](const int& val) { std::cout << val << " "; });
+    graph.DFS(0);
     std::cout << "\n";
-    
-    std::cout << "Vertices: " << graph.vertexCount() << ", Edges: " << graph.edgeCount() << "\n";
 }
 
 void demonstrateHashTable() {
@@ -142,31 +122,23 @@ void demonstrateAlgorithms() {
     // Sorting
     std::vector<int> arr1 = {64, 34, 25, 12, 22, 11, 90};
     std::vector<int> arr2 = arr1;
-    std::vector<int> arr3 = arr1;
     
-    DSA::Algorithms::quickSort(arr1);
-    std::cout << "Quick Sort: ";
+    DSA::Algorithms::bubbleSort(arr1);
+    std::cout << "Bubble Sort: ";
     for (int val : arr1) std::cout << val << " ";
     std::cout << "\n";
     
-    DSA::Algorithms::mergeSort(arr2);
-    std::cout << "Merge Sort: ";
+    DSA::Algorithms::selectionSort(arr2);
+    std::cout << "Selection Sort: ";
     for (int val : arr2) std::cout << val << " ";
     std::cout << "\n";
     
-    DSA::Algorithms::heapSort(arr3);
-    std::cout << "Heap Sort:  ";
-    for (int val : arr3) std::cout << val << " ";
-    std::cout << "\n";
+    // Searching
+    int index = DSA::Algorithms::linearSearch(arr1, 25);
+    std::cout << "Linear Search for 25: " << (index != -1 ? "Found at index " + std::to_string(index) : "Not found") << "\n";
     
-    // Binary Search
-    int index = DSA::Algorithms::binarySearch(arr1, 25);
+    index = DSA::Algorithms::binarySearch(arr1, 25);
     std::cout << "Binary Search for 25: " << (index != -1 ? "Found at index " + std::to_string(index) : "Not found") << "\n";
-    
-    // Quick Select (find 3rd smallest)
-    std::vector<int> arr4 = {7, 10, 4, 3, 20, 15};
-    int kth = DSA::Algorithms::quickSelect(arr4, 2); // 0-indexed, so 2 = 3rd smallest
-    std::cout << "3rd smallest element: " << kth << "\n";
 }
 
 int main() {
@@ -180,7 +152,6 @@ int main() {
         demonstrateStack();
         demonstrateQueue();
         demonstrateBST();
-        demonstrateAVLTree();
         demonstrateGraph();
         demonstrateHashTable();
         demonstrateAlgorithms();

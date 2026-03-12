@@ -1,85 +1,82 @@
-# Custom C++ Data Structures & Algorithms Library
+# C++ Data Structures & Algorithms Library
 
 > **📚 A Learning Project by a Fresher C++ Developer**
 > 
-> This project was built from scratch to deeply understand how data structures and algorithms work internally, going beyond just using STL containers. As a fresher developer, I implemented each structure step-by-step, learning modern C++ features along the way.
+> This is my first major C++ project where I implemented fundamental data structures and algorithms from scratch. I built this to understand how these concepts work internally, not just to use library functions.
 
-## 🎯 Learning Objectives
+## 🎯 Why I Built This
 
-- Understand time/space complexity through implementation
-- Learn modern C++ features (smart pointers, templates, move semantics)
-- Practice writing clean, documented code
-- Build a portfolio project demonstrating CS fundamentals
+- To learn how data structures actually work "under the hood"
+- Practice implementing algorithms I learned in college
+- Build something to show in interviews
+- Get comfortable with C++ pointers and memory management
 
 ## Features
 
 ### Data Structures
-- **Dynamic Array** - Template-based resizable array with automatic memory management
-- **Linked List** - Singly and doubly linked list implementations
-- **Stack** - LIFO data structure with push/pop operations
-- **Queue** - FIFO data structure with enqueue/dequeue operations
-- **Binary Search Tree (BST)** - Ordered tree structure with O(log n) search
-- **AVL Tree** - Self-balancing BST with guaranteed O(log n) operations
-- **Graph** - Adjacency list and matrix representations
-- **Hash Table** - Efficient key-value storage with collision handling
+- **Dynamic Array** - A resizable array (like vector)
+- **Linked List** - Singly and doubly linked lists
+- **Stack** - LIFO data structure
+- **Queue** - FIFO data structure
+- **Binary Search Tree (BST)** - Tree with ordered elements
+- **Graph** - Basic graph with BFS and DFS
+- **Hash Table** - Key-value storage
 
 ### Algorithms
-- **Sorting**: Quick Sort, Merge Sort, Heap Sort
-- **Searching**: Binary Search, DFS, BFS
-- **Graph Algorithms**: Dijkstra's, Topological Sort
+- **Sorting**: Bubble Sort, Selection Sort
+- **Searching**: Linear Search, Binary Search
+- **Graph Traversal**: BFS, DFS
 
-### Modern C++ Features
-- Template metaprogramming for generic implementations
-- Smart pointers (unique_ptr, shared_ptr) for automatic memory management
-- Move semantics for efficient resource management
-- RAII principles throughout
-- STL integration and iterators
-- Exception safety guarantees
+### What I Learned
+- Manual memory management with new/delete
+- Template programming basics
+- Time complexity (O notation)
+- Debugging memory leaks
+- Writing test cases
 
 ## Project Structure
 
 ```
 DSA-Project_CustomCPP lib/
-├── CMakeLists.txt          # Build configuration
-├── README.md               # This file
-├── include/                # Header files
+├── build.sh               # Simple build script
+├── README.md              # This file
+├── include/               # Header files
 │   ├── DynamicArray.hpp
 │   ├── LinkedList.hpp
 │   ├── Stack.hpp
 │   ├── Queue.hpp
 │   ├── BST.hpp
-│   ├── AVLTree.hpp
 │   ├── Graph.hpp
 │   ├── HashTable.hpp
 │   └── Algorithms.hpp
-├── src/                    # Source files
+├── src/                   # Source files
 │   └── main.cpp
-├── tests/                  # Unit tests
+├── tests/                 # Test cases
 │   └── test_data_structures.cpp
-└── examples/               # Usage examples
+└── examples/              # Usage examples
     └── usage_examples.cpp
 ```
 
 ## Building the Project
 
-### Requirements
-- C++17 or later compiler (GCC 7+, Clang 5+, MSVC 2017+)
-- CMake 3.10 or later
-
-### Build Instructions
-
+### Simple Method (Using Shell Script)
 ```bash
-# Create build directory
+# Make the build script executable
+chmod +x build.sh
+
+# Build everything
+./build.sh
+
+# Run the programs
+./build/DSA_Library
+./build/DSA_Tests
+```
+
+### Using CMake (Optional)
+```bash
 mkdir build && cd build
-
-# Configure
 cmake ..
-
-# Build
 cmake --build .
-
-# Run
-./DSA_Library
 ```
 
 ## Usage Examples
@@ -100,6 +97,24 @@ std::cout << arr[0] << std::endl; // 10
 
 DSA::AVLTree<int> tree;
 tree.insert(10);
+## Usage Examples
+
+### Dynamic Array
+```cpp
+#include "DynamicArray.hpp"
+
+DSA::DynamicArray<int> arr;
+arr.push_back(10);
+arr.push_back(20);
+std::cout << arr[0] << std::endl; // 10
+```
+
+### Binary Search Tree
+```cpp
+#include "BST.hpp"
+
+DSA::BST<int> tree;
+tree.insert(10);
 tree.insert(20);
 tree.insert(5);
 bool found = tree.search(10); // true
@@ -109,47 +124,57 @@ bool found = tree.search(10); // true
 ```cpp
 #include "Graph.hpp"
 
-DSA::Graph<int> graph(5);
+DSA::Graph<int> graph;
 graph.addEdge(0, 1);
 graph.addEdge(0, 2);
-graph.BFS(0); // Breadth-first traversal
+graph.BFS(0); // Prints: 0 1 2
 ```
 
-## Complexity Analysis
+### Sorting
+```cpp
+#include "Algorithms.hpp"
 
-All implementations include detailed time and space complexity analysis in comments.
+std::vector<int> data = {5, 2, 8, 1, 9};
+DSA::Algorithms::bubbleSort(data);
+// data is now: {1, 2, 5, 8, 9}
+```
+
+## 📖 My Learning Journey
+
+- **Week 1-2:** Built Dynamic Array - learned about pointers and memory allocation
+- **Week 3-4:** Implemented LinkedList and Stack - understood the difference between array-based and pointer-based structures
+- **Week 5-6:** Created BST - recursion finally clicked for me!
+- **Week 7:** Added Graph with BFS/DFS - graph traversal was tricky
+- **Week 8:** Implemented sorting algorithms and hash table
+
+Biggest challenges:
+- Debugging memory leaks (forgot to delete[] many times!)
+- Understanding recursion for tree traversals
+- Getting template syntax right
+
+## ✅ Test Coverage
+
+All data structures have test cases to verify correctness:
+- 14 unit tests covering all major operations
+- Tests run automatically on build
+- Run tests: `./build/DSA_Tests`
+
+## 🚀 What's Next
+
+Things I want to add as I learn more:
+- [ ] More sorting algorithms (Quick Sort, Merge Sort)
+- [ ] AVL Tree (self-balancing)
+- [ ] Graph algorithms (Dijkstra's shortest path)
+- [ ] Better error handling
+- [ ] Performance benchmarks
+
+## ⚠️ Known Limitations
+
+- This is a learning project, not production-ready
+- Some edge cases might not be handled
+- Focused on correctness over performance
+- Not thread-safe
 
 ## License
 
-MIT License - Feel free to use for learning and projects
-
-## 📖 Learning Journey
-
-This project represents my journey learning C++ and data structures:
-- **Phase 1:** Started with basic structures (Array, LinkedList, Stack, Queue)
-- **Phase 2:** Moved to trees (BST, then self-balancing AVL)
-- **Phase 3:** Implemented graphs and hash tables
-- **Phase 4:** Added classic algorithms and comprehensive testing
-
-See [LEARNING_JOURNEY.md](LEARNING_JOURNEY.md) for detailed progression and lessons learned.
-
-## 🎓 What I Learned
-
-- **Memory Management:** Smart pointers prevent leaks without manual delete
-- **Templates:** Write generic code that works with any type
-- **Complexity Analysis:** Understand why certain operations are O(1) vs O(n)
-- **Trade-offs:** Each structure has pros/cons for different use cases
-- **Testing:** How to verify code correctness systematically
-
-## 🚀 Future Improvements
-
-As I continue learning, I plan to add:
-- [ ] Red-Black Tree implementation
-- [ ] Trie (Prefix Tree) for string operations
-- [ ] More graph algorithms (Kruskal's, Prim's)
-- [ ] Performance benchmarking suite
-- [ ] Thread-safe versions using mutexes
-
-## Author
-
-Fresher C++ Developer building this as a learning project to master data structures and modern C++ practices
+MIT License - Feel free to use for learning
