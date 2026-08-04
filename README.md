@@ -1,46 +1,38 @@
 # C++ Data Structures & Algorithms Library
 
-> **📚 A Learning Project by a Fresher C++ Developer**
-> 
-> This is my first major C++ project where I implemented fundamental data structures and algorithms from scratch. I built this to understand how these concepts work internally, not just to use library functions.
+Welcome! If you are a beginner (or "fresher") in C++ and want to understand how data structures and algorithms actually work under the hood, you are in the right place. 
 
-## 🎯 Why I Built This
+This is a learning-focused project where fundamental data structures and algorithms have been built from scratch. Instead of just using standard libraries like `std::vector` or `std::stack`, this repository shows you exactly how memory management, pointers, and templates bring these concepts to life.
 
-- To learn how data structures actually work "under the hood"
-- Practice implementing algorithms I learned in college
-- Build something to show in interviews
-- Get comfortable with C++ pointers and memory management
+## Why This Project Exists
 
-## Features
+- **Learn the "Under the Hood" Mechanics:** See exactly how arrays resize and how linked lists traverse memory.
+- **Interview Preparation:** Practical implementation of concepts frequently asked in technical interviews.
+- **Master C++ Fundamentals:** Get comfortable with raw pointers, `new`/`delete` memory management, and template programming.
 
-### Data Structures
-- **Dynamic Array** - A resizable array (like vector)
-- **Linked List** - Singly and doubly linked lists
-- **Stack** - LIFO data structure
-- **Queue** - FIFO data structure
-- **Binary Search Tree (BST)** - Tree with ordered elements
-- **Graph** - Basic graph with BFS and DFS
-- **Hash Table** - Key-value storage
+## What is Included?
+
+### Core Data Structures
+- **Dynamic Array**: A resizable array (similar to `std::vector`)
+- **Linked List**: Classic Singly and Doubly Linked Lists
+- **Stack**: Last-In-First-Out (LIFO) structure
+- **Queue**: First-In-First-Out (FIFO) structure
+- **Binary Search Tree (BST)**: Tree structure with ordered elements
+- **Graph**: Basic graph representation with BFS (Breadth-First Search) and DFS (Depth-First Search)
+- **Hash Table**: Basic Key-Value storage mechanism
 
 ### Algorithms
 - **Sorting**: Bubble Sort, Selection Sort
 - **Searching**: Linear Search, Binary Search
 - **Graph Traversal**: BFS, DFS
 
-### What I Learned
-- Manual memory management with new/delete
-- Template programming basics
-- Time complexity (O notation)
-- Debugging memory leaks
-- Writing test cases
-
 ## Project Structure
 
-```
-DSA-Project_CustomCPP lib/
-├── build.sh               # Simple build script
-├── README.md              # This file
-├── include/               # Header files
+```text
+cpp-dsa-library/
+├── build.sh               # Simple script to compile everything automatically
+├── CMakeLists.txt         # Alternative build configuration for CMake users
+├── include/               # The actual logic (Header files)
 │   ├── DynamicArray.hpp
 │   ├── LinkedList.hpp
 │   ├── Stack.hpp
@@ -49,132 +41,108 @@ DSA-Project_CustomCPP lib/
 │   ├── Graph.hpp
 │   ├── HashTable.hpp
 │   └── Algorithms.hpp
-├── src/                   # Source files
-│   └── main.cpp
-├── tests/                 # Test cases
-│   └── test_data_structures.cpp
-└── examples/              # Usage examples
-    └── usage_examples.cpp
+├── src/                   # Main program source files
+├── tests/                 # Unit tests to prove the code works!
+└── examples/              # Simple examples showing how to use each structure
 ```
 
-## Building the Project
+## How to Run This Code
 
-### Simple Method (Using Shell Script)
+You don't need any complex IDE setup to run this. If you are on Mac or Linux (or using Git Bash on Windows), just use the provided script.
+
+### 1. The Simple Way (Using the Shell Script)
+
+Open your terminal, go to the project folder, and run:
+
 ```bash
-# Make the build script executable
+# Make the build script executable (you only need to do this once)
 chmod +x build.sh
 
-# Build everything
+# Run the build script
 ./build.sh
-
-# Run the programs
-./build/DSA_Library
-./build/DSA_Tests
 ```
 
-### Using CMake (Optional)
+Once it compiles, you can run the generated programs:
 ```bash
-mkdir build && cd build
+# Run the main library executable
+./build/DSA_Library
+
+# Run the test suite to verify everything works
+./build/DSA_Tests
+
+# Run the basic usage examples
+./build/DSA_Examples
+```
+
+### 2. The Standard Way (Using CMake)
+
+If you are familiar with CMake, you can build it like this:
+
+```bash
+mkdir build
+cd build
 cmake ..
 cmake --build .
 ```
 
-## Usage Examples
+## Simple Code Examples
 
-### Dynamic Array
+Here is how easy it is to use the data structures from this library in your own C++ code:
+
+### 1. Dynamic Array
 ```cpp
 #include "DynamicArray.hpp"
+#include <iostream>
 
-DSA::DynamicArray<int> arr;
-arr.push_back(10);
-arr.push_back(20);
-std::cout << arr[0] << std::endl; // 10
+int main() {
+    DSA::DynamicArray<int> arr;
+    arr.push_back(10);
+    arr.push_back(20);
+    
+    std::cout << "First element is: " << arr[0] << std::endl; // Outputs: 10
+    return 0;
+}
 ```
 
-### AVL Tree
-```cpp
-#include "AVLTree.hpp"
-
-DSA::AVLTree<int> tree;
-tree.insert(10);
-## Usage Examples
-
-### Dynamic Array
-```cpp
-#include "DynamicArray.hpp"
-
-DSA::DynamicArray<int> arr;
-arr.push_back(10);
-arr.push_back(20);
-std::cout << arr[0] << std::endl; // 10
-```
-
-### Binary Search Tree
+### 2. Binary Search Tree (BST)
 ```cpp
 #include "BST.hpp"
 
-DSA::BST<int> tree;
-tree.insert(10);
-tree.insert(20);
-tree.insert(5);
-bool found = tree.search(10); // true
+int main() {
+    DSA::BST<int> tree;
+    tree.insert(10);
+    tree.insert(20);
+    tree.insert(5);
+    
+    bool found = tree.search(10); // Returns true
+    return 0;
+}
 ```
 
-### Graph with BFS
+### 3. Graph with BFS Traversal
 ```cpp
 #include "Graph.hpp"
 
-DSA::Graph<int> graph;
-graph.addEdge(0, 1);
-graph.addEdge(0, 2);
-graph.BFS(0); // Prints: 0 1 2
+int main() {
+    DSA::Graph<int> graph;
+    graph.addEdge(0, 1);
+    graph.addEdge(0, 2);
+    
+    // Prints the breadth-first search path starting from node 0
+    graph.BFS(0); 
+    return 0;
+}
 ```
 
-### Sorting
-```cpp
-#include "Algorithms.hpp"
+## Testing
 
-std::vector<int> data = {5, 2, 8, 1, 9};
-DSA::Algorithms::bubbleSort(data);
-// data is now: {1, 2, 5, 8, 9}
-```
+This project includes 14 automated unit tests to guarantee that operations (like inserting, deleting, and searching) behave correctly without memory leaks. Running `./build/DSA_Tests` will execute them all.
 
-## 📖 My Learning Journey
+## Known Limitations
 
-- **Week 1-2:** Built Dynamic Array - learned about pointers and memory allocation
-- **Week 3-4:** Implemented LinkedList and Stack - understood the difference between array-based and pointer-based structures
-- **Week 5-6:** Created BST - recursion finally clicked for me!
-- **Week 7:** Added Graph with BFS/DFS - graph traversal was tricky
-- **Week 8:** Implemented sorting algorithms and hash table
-
-Biggest challenges:
-- Debugging memory leaks (forgot to delete[] many times!)
-- Understanding recursion for tree traversals
-- Getting template syntax right
-
-## ✅ Test Coverage
-
-All data structures have test cases to verify correctness:
-- 14 unit tests covering all major operations
-- Tests run automatically on build
-- Run tests: `./build/DSA_Tests`
-
-## 🚀 What's Next
-
-Things I want to add as I learn more:
-- [ ] More sorting algorithms (Quick Sort, Merge Sort)
-- [ ] AVL Tree (self-balancing)
-- [ ] Graph algorithms (Dijkstra's shortest path)
-- [ ] Better error handling
-- [ ] Performance benchmarks
-
-## ⚠️ Known Limitations
-
-- This is a learning project, not production-ready
-- Some edge cases might not be handled
-- Focused on correctness over performance
-- Not thread-safe
+- **For Learning Only:** This library is optimized for learning and readability, not for high-performance production systems. For real-world applications, always prefer the C++ Standard Template Library (STL).
+- **Thread Safety:** These data structures are not thread-safe.
 
 ## License
 
-MIT License - Feel free to use for learning
+This project is open-source and available under the [MIT License](LICENSE).
